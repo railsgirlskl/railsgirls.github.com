@@ -1,6 +1,6 @@
 permalink: pretty
 markdown: kramdown
-highlighter: :pygments
+highlighter: :rouge
 exclude:
   - ".rvmrc"
   - ".rbenv-version"
