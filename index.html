@@ -49,9 +49,9 @@ title: Guides
 
 <p>This is because you are now in the Rails server in that terminal tab.</p>
 
-<p>When the command prompt is not visible you cannot execute new commands. If you try running cd or another command it will not work. To return to the normal command prompt, hit <code>CTRL</code>+<code>C</code> in the terminal to quit the server.</p>
+<p>When the command prompt is not visible you cannot execute new commands. If you try running <code>cd</code> or another command it will not work. To return to the normal command prompt, hit <code>CTRL</code>+<code>C</code> in the terminal to quit the server.</p>
 
-<p>If you want to run other commands, simply open another terminal tab by clicking <code>+</code> sign next to current terminal tab.</p>
+<p>If you want to run other commands, simply open another terminal tab by clicking <code><strong>+</strong></code> sign next to current terminal tab.</p>
 
 <p><strong>Tip</strong>: You can keep two terminal tabs open. One for running the server and other to run all the commands.</p>
 
@@ -121,7 +121,7 @@ $ bin/rails server -b $IP -p $PORT
 <p>Let’s also add a navigation bar and footer to the layout. In the same file, under <code class="highlighter-rouge">&lt;body&gt;</code> add:</p>
 
 {% highlight html %}
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -144,9 +144,9 @@ $ bin/rails server -b $IP -p $PORT
 <p>And before <code class="highlighter-rouge">&lt;/body&gt;</code> add:</p>
 
 {% highlight html %}
-<footer>
+<footer class="footer">
   <div class="container">
-    RailsGirls KL 2016
+    <p class="text-muted">RailsGirls KL 2016</p>
   </div>
 </footer>
 {% endhighlight %}
@@ -288,14 +288,20 @@ th { border-bottom: 1px solid #DDD; }
 <p>Open <code>app/views/photos/index.html.erb</code> and replace all lines with</p>
 
 {% highlight erb %}
-<h1>Listing photos</h1>
-
 <% @photos.in_groups_of(3) do |group| %>
   <div class="row">
     <% group.compact.each do |photo| %>
       <div class="col-xs-4">
-        <%= image_tag photo.file_url, width: '100%' if photo.file.present? %>
-        <%= photo.description %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= link_to photo_path(photo) do %>
+              <%= image_tag photo.file_url, width: '100%' if photo.file.present? %>
+            <% end %>
+          </div>
+          <div class="panel-footer">
+            <%= photo.description %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
