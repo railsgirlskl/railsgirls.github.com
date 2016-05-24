@@ -238,7 +238,7 @@ th { border-bottom: 1px solid #DDD; }
 
 <p>To:</p>
 
-{% highlight erb %} <%= form_for @photo, :html => {:multipart => true} do |f| %> {% endhighlight %}
+{% highlight erb %} <%= form_for @photo, html: {multipart: true} do |f| %> {% endhighlight %}
 
 <p>In your browser, again click on the New Photo link. This time we can actually add a new photo. When you upload an image it doesn’t look nice because it only shows a path to the file, so let’s fix that.</p>
 
