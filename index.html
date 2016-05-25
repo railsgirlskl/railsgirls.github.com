@@ -174,8 +174,8 @@ th { border-bottom: 1px solid #DDD; }
 
 <p>Open <code>app/views/layouts/application.html.erb</code>, under the line:</p>
 
-{% highlight html %}
-<li class="active"><a href="/photos">Photos</a></li>
+{% highlight erb %}
+<li class="active"><%= link_to 'Photos', photos_path %></li>
 {% endhighlight %}
 
 <p>Add:</p>
