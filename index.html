@@ -45,7 +45,7 @@ title: Guides
 
 <p>Notice now in the terminal, the command prompt is not visible. The command prompt looks like this:</p>
 
-{% highlight sh %}fzrh:~/workspace ${% endhighlight %}
+{% highlight sh %}username:~/workspace ${% endhighlight %}
 
 <p>This is because you are now in the Rails server in that terminal tab.</p>
 
@@ -175,7 +175,7 @@ th { border-bottom: 1px solid #DDD; }
 <p>Open <code>app/views/layouts/application.html.erb</code>, under the line:</p>
 
 {% highlight html %}
-  <li class="active"><a href="/photos">Photos</a></li>
+<li class="active"><a href="/photos">Photos</a></li>
 {% endhighlight %}
 
 <p>Add:</p>
@@ -190,11 +190,15 @@ th { border-bottom: 1px solid #DDD; }
 
 <p>Open <code>Gemfile</code> in the project directory using your text editor and under the line</p>
 
-{% highlight ruby %} gem 'sqlite3' {% endhighlight %}
+{% highlight ruby %}
+gem 'sqlite3'
+{% endhighlight %}
 
 <p>Add:</p>
 
-{% highlight ruby %} gem 'carrierwave' {% endhighlight %}
+{% highlight ruby %}
+gem 'carrierwave'
+{% endhighlight %}
 
 <p><strong>Mentor: Explain what libraries are and why they are useful. Describe what open source software is.</strong></p>
 
@@ -216,39 +220,55 @@ th { border-bottom: 1px solid #DDD; }
 
 <p>Open <code>app/models/photo.rb</code> and under the line:</p>
 
-{% highlight ruby %} class Photo < ActiveRecord::Base {% endhighlight %}
+{% highlight ruby %}
+class Photo < ActiveRecord::Base
+{% endhighlight %}
 
 <p>Add:</p>
 
-{% highlight ruby %} mount_uploader :file, PictureUploader {% endhighlight %}
+{% highlight ruby %}
+mount_uploader :file, PictureUploader
+{% endhighlight %}
 
 <p>Open <code>app/views/photos/_form.html.erb</code> and change:</p>
 
-{% highlight erb %} <%= f.text_field :file %> {% endhighlight %}
+{% highlight erb %}
+<%= f.text_field :file %>
+{% endhighlight %}
 
 <p>To:</p>
 
-{% highlight erb %} <%= f.file_field :file %> {% endhighlight %}
+{% highlight erb %}
+<%= f.file_field :file %>
+{% endhighlight %}
 
 <p>Sometimes, you might get an <em>TypeError: can’t cast ActionDispatch::Http::UploadedFile to string.</em></p>
 
 <p>If this happens, in file <code>app/views/photos/_form.html.erb</code> change the line:</p>
 
-{% highlight erb %} <%= form_for(@photo) do |f| %> {% endhighlight %}
+{% highlight erb %}
+<%= form_for(@photo) do |f| %>
+{% endhighlight %}
 
 <p>To:</p>
 
-{% highlight erb %} <%= form_for @photo, html: {multipart: true} do |f| %> {% endhighlight %}
+{% highlight erb %}
+<%= form_for @photo, html: {multipart: true} do |f| %>
+{% endhighlight %}
 
 <p>In your browser, again click on the New Photo link. This time we can actually add a new photo. When you upload an image it doesn’t look nice because it only shows a path to the file, so let’s fix that.</p>
 
 <p>Open <code>app/views/photos/show.html.erb</code> and change:</p>
 
-{% highlight erb %} <%= @photo.file %> {% endhighlight %}
+{% highlight erb %}
+<%= @photo.file %>
+{% endhighlight %}
 
 <p>To:</p>
 
-{% highlight erb %} <%= image_tag(@photo.file_url, width: 600) if @photo.file.present? %> {% endhighlight %}
+{% highlight erb %}
+<%= image_tag(@photo.file_url, width: 600) if @photo.file.present? %>
+{% endhighlight %}
 
 <p>Now refresh your browser to see what changed.</p>
 
@@ -260,23 +280,27 @@ th { border-bottom: 1px solid #DDD; }
 
 <p>Open <code>app/views/photos/_form.html.erb</code>, where you see:</p>
 
-{% highlight html %} <div class="field"> {% endhighlight %}
+{% highlight html %}
+<div class="field">
+{% endhighlight %}
 
 <p>Change to:</p>
 
-{% highlight html %} <div class="form-group"> {% endhighlight %}
+{% highlight html %}
+<div class="form-group">
+{% endhighlight %}
 
 <p>And add a <code>form-control</code> CSS class into each form input</p>
 
 {% highlight erb %}
-  <%= f.text_field :description, class:'form-control' %>
-  <%= f.file_field :file, class:'form-control' %>
+<%= f.text_field :description, class:'form-control' %>
+<%= f.file_field :file, class:'form-control' %>
 {% endhighlight %}
 
 <p>To make the button look nice, add a <code>btn btn-primary</code> CSS class to it</p>
 
 {% highlight erb %}
-  <%= f.submit class:'btn btn-primary' %>
+<%= f.submit class:'btn btn-primary' %>
 {% endhighlight %}
 
 <h2 id="design-the-photo-gallery"><em>7.</em>Design the photo gallery</h2>
@@ -360,7 +384,7 @@ root "photos#index"
 <p>Lets add a static page to our app that will hold information about the author of this application — you!</p>
 
 {% highlight sh %}
-bin/rails generate controller pages about
+$ bin/rails generate controller pages about
 {% endhighlight %}
 
 <p>This command will create you a new folder under app/views called /pages and under that a file called info.html.erb which will be your info page.</p>
